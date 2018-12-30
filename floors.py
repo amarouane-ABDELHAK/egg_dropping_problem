@@ -25,13 +25,19 @@ def get_threshold(data):
 	return get_threshold(data)
 
 if __name__ == '__main__':
-	for i in range(70):
-		n_floors = 40
+	max_num = 0
+	worst_case = 0
+	n_floors = 10000
+	for i in range(1, 100):
 		egg_breaks_on_level = random.randint(1,n_floors)
 		data = {'n_start': 0, 'n_end': n_floors, 'tries': 0, 'waisted': 0}
 		n = get_threshold(data)
+		if data['waisted'] > max_num:
+			max_num = data['waisted']
+			worst_case = egg_breaks_on_level
 		print("Total number of floors:\t%s\nEgg breaks on level:\t%s" %
 		(n_floors, egg_breaks_on_level))
 		print("Number of tries:\t%s\nNumber of eggs waisted:\t%s\nThreshold:\t%s\n" %
 		(data['tries'], data['waisted'], n))
 		print("===================")
+	print("worst level: %s\tmax broken eggs : %s " %(worst_case, max_num))
